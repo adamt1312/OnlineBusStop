@@ -12,16 +12,14 @@ const Item = ({ stop_name }) => (
 const AllStopsScreen = ({ navigation }) => {
   const renderItem = ({ item }) => <Item stop_name={item.stop_name} />;
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={bus_stops}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-        initialNumToRender={15}
-        onEndReachedThreshold={0.5}
-        onEndReached={() => console.log("YEP")}
-      />
-    </SafeAreaView>
+    <FlatList
+      data={bus_stops}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id.toString()}
+      initialNumToRender={15}
+      onEndReachedThreshold={0.5}
+      onEndReached={() => console.log("YEP")}
+    />
   );
 };
 
