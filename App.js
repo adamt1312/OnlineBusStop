@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, SafeAreaView, StatusBar } from "react-native";
+import { View, Text, SafeAreaView, StatusBar, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
@@ -10,10 +10,26 @@ const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <NavigationContainer>
-      <TabNav />
-      <StatusBar hidden={true} translucent={true} />
-    </NavigationContainer>
+    <>
+      <View
+        style={{
+          width: "100%",
+          height: 80,
+          backgroundColor: "#001C2F",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Image
+          style={{ resizeMode: "contain", height: 100 }}
+          source={require("./assets/o-imhd-sk.png")}
+        />
+      </View>
+      <NavigationContainer>
+        <TabNav />
+        <StatusBar hidden={true} translucent={true} />
+      </NavigationContainer>
+    </>
   );
 }
 

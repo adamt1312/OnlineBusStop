@@ -2,6 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaView, View, FlatList, StyleSheet, Text } from "react-native";
 import bus_stops from "../assets/bus_stops.json";
+import { Input, Block } from "galio-framework";
+import { AntDesign } from "@expo/vector-icons";
 
 const Item = ({ stop_name }) => (
   <View style={styles.item}>
@@ -12,14 +14,30 @@ const Item = ({ stop_name }) => (
 const AllStopsScreen = ({ navigation }) => {
   const renderItem = ({ item }) => <Item stop_name={item.stop_name} />;
   return (
-    <FlatList
-      data={bus_stops}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id.toString()}
-      initialNumToRender={15}
-      onEndReachedThreshold={0.5}
-      onEndReached={() => console.log("YEP")}
-    />
+    <View>
+      <View>
+        <Input
+          placeholder="Search"
+          color={"blue"}
+          style={{ borderColor: "white" }}
+          placeholderTextColor={"black"}
+          left
+          icon="search1"
+          family="antdesign"
+          iconSize={21}
+          iconColor="black"
+          fontSize={21}
+        />
+      </View>
+      <FlatList
+        data={bus_stops}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id.toString()}
+        initialNumToRender={15}
+        onEndReachedThreshold={0.5}
+        onEndReached={() => console.log("YEP")}
+      />
+    </View>
   );
 };
 
