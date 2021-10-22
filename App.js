@@ -1,15 +1,21 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { WebView } from "react-native-webview";
+import * as React from "react";
+import { View, Text } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from "./screens/HomeScreen";
+import AllStopsScreen from "./screens/AllStopsScreen";
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <WebView
-      source={{ uri: "https://imhd.sk/ba/online-zastavkova-tabula?st=443" }}
-      style={{ marginTop: 20, borderWidth: 5, borderColor: "red" }}
-    />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="All" component={AllStopsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({});
+export default App;
