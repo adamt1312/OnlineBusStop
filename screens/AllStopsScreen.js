@@ -1,41 +1,48 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView, View, FlatList, StyleSheet, Text } from "react-native";
 import bus_stops from "../assets/bus_stops.json";
 import { Input, Block } from "galio-framework";
 import { AntDesign } from "@expo/vector-icons";
-
-const Item = ({ stop_name }) => (
-  <View style={styles.item}>
-    <Text style={styles.stop_name}>{stop_name}</Text>
-  </View>
-);
+import { SearchBar } from "react-native-elements";
 
 const AllStopsScreen = ({ navigation }) => {
-  const renderItem = ({ item }) => <Item stop_name={item.stop_name} />;
+  const [search, setSearch] = useState("");
+  const [originalData, setOriginalData] = useState(bus_stops);
+  const [data, setData] = useState(bus_stops);
+
+  const searchFilterFunction = (text) => {
+    setSearch(text);
+    const newData = originalData.filter((item) => {
+      const item_name = item.stop_name.toUpperCase();
+      const textData = text.toUpperCase();
+      // console.log(item_name);
+      return item_name.indexOf(textData) > -1;
+    });
+    setData(newData);
+  };
+
+  const Item = ({ stop_name }) => (
+    <View style={styles.item}>
+      <Text style={styles.stop_name}>{stop_name}</Text>
+    </View>
+  );
+
   return (
-    <View>
-      <View>
-        <Input
-          placeholder="Search"
-          color={"blue"}
-          style={{ borderColor: "white" }}
-          placeholderTextColor={"black"}
-          left
-          icon="search1"
-          family="antdesign"
-          iconSize={21}
-          iconColor="black"
-          fontSize={21}
-        />
-      </View>
+    <View style={{ flex: 1, backgroundColor: "#003052" }}>
       <FlatList
-        data={bus_stops}
-        renderItem={renderItem}
+        data={data}
+        renderItem={({ item }) => <Item stop_name={item.stop_name} />}
         keyExtractor={(item) => item.id.toString()}
         initialNumToRender={15}
         onEndReachedThreshold={0.5}
-        onEndReached={() => console.log("YEP")}
+        ListHeaderComponent={
+          <SearchBar
+            placeholder="Search a bus stop..."
+            value={search}
+            onChangeText={(search) => searchFilterFunction(search)}
+          />
+        }
       />
     </View>
   );
