@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { SafeAreaView, View, FlatList, StyleSheet, Text } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+} from "react-native";
 import bus_stops from "../assets/bus_stops.json";
 import { Input, Block } from "galio-framework";
 import { AntDesign } from "@expo/vector-icons";
@@ -22,9 +29,21 @@ const AllStopsScreen = ({ navigation }) => {
     setData(newData);
   };
 
-  const Item = ({ stop_name }) => (
+  const Item = ({ stop_name, id }) => (
     <View style={styles.item}>
-      <Text style={styles.stop_name}>{stop_name}</Text>
+      <TouchableHighlight
+        underlayColor="#DDDDDD"
+        style={styles.btn}
+        onPress={() =>
+          navigation.navigate("Home", {
+            stop_id: id,
+          })
+        }
+        activeOpacity={0.3}
+        underlayColor={"#001C2F"}
+      >
+        <Text style={styles.stop_name}>{stop_name}</Text>
+      </TouchableHighlight>
     </View>
   );
 
@@ -32,7 +51,9 @@ const AllStopsScreen = ({ navigation }) => {
     <View style={{ flex: 1, backgroundColor: "#003052" }}>
       <FlatList
         data={data}
-        renderItem={({ item }) => <Item stop_name={item.stop_name} />}
+        renderItem={({ item }) => (
+          <Item stop_name={item.stop_name} id={item.id} />
+        )}
         keyExtractor={(item) => item.id.toString()}
         initialNumToRender={15}
         onEndReachedThreshold={0.5}
@@ -54,15 +75,24 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    backgroundColor: "#003052",
-    padding: 15,
+    // backgroundColor: "#003052",
+    padding: 0,
     borderBottomColor: "#001C2F",
     borderBottomWidth: 5,
+    height: 70,
+    justifyContent: "center",
   },
   stop_name: {
     fontSize: 32,
     color: "white",
     fontFamily: "Roboto",
+    paddingLeft: 20,
+  },
+  btn: {
+    flex: 1,
+    // borderColor: "red",
+    // borderWidth: 5,
+    justifyContent: "center",
   },
 });
 export default AllStopsScreen;

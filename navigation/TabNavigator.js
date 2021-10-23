@@ -3,14 +3,13 @@ import HomeScreen from "../screens/HomeScreen";
 import AllStopsScreen from "../screens/AllStopsScreen";
 import * as React from "react";
 import { View, Text, SafeAreaView } from "react-native";
-import search from "../screens/search";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 
 const Tab = createMaterialTopTabNavigator();
 
-const TabNav = ({}) => {
+const TabNavigator = ({}) => {
   return (
     <View style={{ flex: 1 }}>
       <Tab.Navigator
@@ -96,4 +95,4 @@ const TabNav = ({}) => {
   );
 };
 
-export default TabNav;
+export default TabNavigator;
