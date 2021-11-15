@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.adamt1312.OnlineBusStop"
     },
     "web": {
       "favicon": "./assets/favicon.png"

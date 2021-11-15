@@ -1,7 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React, { useState, useEffect, useRef } from "react";
+import { StyleSheet } from "react-native";
 import { WebView } from "react-native-webview";
 
 const HomeScreen = ({ route, navigation }) => {
@@ -19,9 +17,6 @@ const HomeScreen = ({ route, navigation }) => {
 
   return (
     <WebView
-      ref={(ref) => {
-        webview = ref;
-      }}
       source={{
         uri: stop_url,
       }}

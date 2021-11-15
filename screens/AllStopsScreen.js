@@ -20,11 +20,17 @@ const AllStopsScreen = ({ navigation }) => {
 
   const searchFilterFunction = (text) => {
     setSearch(text);
-    const newData = originalData.filter((item) => {
-      const item_name = item.stop_name.toUpperCase();
-      const textData = text.toUpperCase();
-      // console.log(item_name);
-      return item_name.indexOf(textData) > -1;
+    const newData = originalData.filter((busStop) => {
+      const busStopName = busStop.stop_name
+        .toUpperCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+      const searchedText = text
+        .toUpperCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+      return busStopName.indexOf(searchedText) > -1;
     });
     setData(newData);
   };
