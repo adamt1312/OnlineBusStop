@@ -46,6 +46,7 @@ const AllStopsScreen = ({ navigation }) => {
           })
         }
         activeOpacity={0.3}
+        underlayColor={"#001C2F"}
       >
         <Text style={styles.stop_name}>{stop_name}</Text>
       </TouchableHighlight>
