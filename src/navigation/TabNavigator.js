@@ -1,10 +1,9 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import AllStopsScreen from "../screens/AllStopsScreen";
-import * as React from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import { View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useState } from "react";
 import { Entypo } from "@expo/vector-icons";
 
 const Tab = createMaterialTopTabNavigator();
@@ -19,11 +18,7 @@ const TabNavigator = ({}) => {
             color: "white",
             borderWidth: 5,
             borderColor: "red",
-            // justifyContent: "center",
-            // alignItems: "center",
-            // flexDirection: "row",
           },
-
           tabBarStyle: { backgroundColor: "#001C2F" },
         }}
       >
@@ -42,18 +37,9 @@ const TabNavigator = ({}) => {
                   size={30}
                   color={focused ? "white" : "#003052"}
                 />
-                {/* <Text
-                  style={{
-                    fontSize: 15,
-                    marginBottom: 3,
-                    color: focused ? "white" : "#003052",
-                    bottom: 0,
-                  }}
-                >
-                  Home
-                </Text> */}
               </View>
             ),
+            swipeEnabled: false,
           }}
         />
         <Tab.Screen
@@ -66,26 +52,11 @@ const TabNavigator = ({}) => {
                   flexDirection: "row",
                 }}
               >
-                {/* <MaterialCommunityIcons
-                  name="bus-stop"
-                  size={30}
-                  color={focused ? "white" : "#003052"}
-                /> */}
                 <Entypo
                   name="list"
                   size={30}
                   color={focused ? "white" : "#003052"}
                 />
-                {/* <Text
-                  style={{
-                    fontSize: 15,
-                    marginBottom: 3,
-                    color: focused ? "white" : "#003052",
-                    bottom: 0,
-                  }}
-                >
-                  All stops
-                </Text> */}
               </View>
             ),
           }}

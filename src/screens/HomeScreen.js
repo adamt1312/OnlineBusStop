@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, ActivityIndicator } from "react-native";
 import { WebView } from "react-native-webview";
 
 const HomeScreen = ({ route, navigation }) => {
@@ -17,9 +17,12 @@ const HomeScreen = ({ route, navigation }) => {
 
   return (
     <WebView
+      useWebView2
       source={{
         uri: stop_url,
       }}
+      startInLoadingState={true}
+      renderLoading={() => <ActivityIndicator size="large" />}
     />
   );
 };

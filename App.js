@@ -1,11 +1,8 @@
 import * as React from "react";
-import { View, Text, SafeAreaView, StatusBar, Image } from "react-native";
+import { View, StatusBar, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "./screens/HomeScreen";
-import AllStopsScreen from "./screens/AllStopsScreen";
-import TabNavigator from "./navigation/TabNavigator";
-import StackNavigator from "./navigation/StackNavigator";
+import TabNavigator from "./src/navigation/TabNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +24,6 @@ function App() {
         />
       </View>
       <NavigationContainer>
-        {/* <StackNavigator /> */}
         <TabNavigator />
         <StatusBar hidden={true} translucent={true} />
       </NavigationContainer>

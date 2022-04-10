@@ -1,16 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
-  SafeAreaView,
   View,
   FlatList,
   StyleSheet,
   Text,
   TouchableHighlight,
 } from "react-native";
-import bus_stops from "../assets/bus_stops.json";
-import { Input, Block } from "galio-framework";
-import { AntDesign } from "@expo/vector-icons";
+import bus_stops from "../../assets/bus_stops.json";
 import { SearchBar } from "react-native-elements";
 
 const AllStopsScreen = ({ navigation }) => {
@@ -53,7 +50,7 @@ const AllStopsScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#003052" }}>
+    <View style={styles.container}>
       <FlatList
         data={data}
         renderItem={({ item }) => (
@@ -69,6 +66,7 @@ const AllStopsScreen = ({ navigation }) => {
             onChangeText={(search) => searchFilterFunction(search)}
           />
         }
+        stickyHeaderIndices={[0]}
       />
     </View>
   );
@@ -77,10 +75,9 @@ const AllStopsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: "#003052",
   },
   item: {
-    // backgroundColor: "#003052",
     padding: 0,
     borderBottomColor: "#001C2F",
     borderBottomWidth: 5,
@@ -95,8 +92,6 @@ const styles = StyleSheet.create({
   },
   btn: {
     flex: 1,
-    // borderColor: "red",
-    // borderWidth: 5,
     justifyContent: "center",
   },
 });

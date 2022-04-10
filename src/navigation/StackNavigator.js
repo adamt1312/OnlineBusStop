@@ -1,6 +1,4 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import Home from "../screens/HomeScreen";
-import AllStopsScreen from "../screens/AllStopsScreen";
 import TabNavigator from "../navigation/TabNavigator";
 import * as React from "react";
 
