@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   View,
@@ -81,11 +80,11 @@ const styles = StyleSheet.create({
     padding: 0,
     borderBottomColor: "#001C2F",
     borderBottomWidth: 5,
-    height: 70,
+    height: 55,
     justifyContent: "center",
   },
   stop_name: {
-    fontSize: 32,
+    fontSize: 25,
     color: "white",
     fontFamily: "Roboto",
     paddingLeft: 20,
