@@ -3,7 +3,6 @@ import HomeScreen from "../screens/HomeScreen";
 import AllStopsScreen from "../screens/AllStopsScreen";
 import { View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { useState } from "react";
 import { Entypo } from "@expo/vector-icons";
 
 const Tab = createMaterialTopTabNavigator();
@@ -35,7 +34,7 @@ const TabNavigator = ({}) => {
                 <AntDesign
                   name="home"
                   size={30}
-                  color={focused ? "white" : "#003052"}
+                  color={focused ? "white" : "#004a80"}
                 />
               </View>
             ),
@@ -55,7 +54,7 @@ const TabNavigator = ({}) => {
                 <Entypo
                   name="list"
                   size={30}
-                  color={focused ? "white" : "#003052"}
+                  color={focused ? "white" : "#004a80"}
                 />
               </View>
             ),

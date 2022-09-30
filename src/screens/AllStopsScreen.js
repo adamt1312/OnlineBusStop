@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import {
-  View,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-} from "react-native";
+import { View, FlatList, StyleSheet, Text, Pressable } from "react-native";
 import bus_stops from "../../assets/bus_stops.json";
-import { SearchBar } from "react-native-elements";
+import { Searchbar } from "react-native-paper";
+import { SEARCHBAR_PLACEHOLDER } from "../constants";
 
 const AllStopsScreen = ({ navigation }) => {
   const [search, setSearch] = useState("");
@@ -33,9 +28,14 @@ const AllStopsScreen = ({ navigation }) => {
 
   const Item = ({ stop_name, id }) => (
     <View style={styles.item}>
-      <TouchableHighlight
+      <Pressable
         underlayColor="#DDDDDD"
-        style={styles.btn}
+        style={({ pressed }) => [
+          {
+            backgroundColor: { white: pressed },
+          },
+          styles.btn,
+        ]}
         onPress={() =>
           navigation.navigate("Home", {
             stop_id: id,
@@ -44,7 +44,7 @@ const AllStopsScreen = ({ navigation }) => {
         activeOpacity={0.3}
       >
         <Text style={styles.stop_name}>{stop_name}</Text>
-      </TouchableHighlight>
+      </Pressable>
     </View>
   );
 
@@ -59,10 +59,11 @@ const AllStopsScreen = ({ navigation }) => {
         initialNumToRender={15}
         onEndReachedThreshold={0.5}
         ListHeaderComponent={
-          <SearchBar
-            placeholder="Search a bus stop..."
+          <Searchbar
+            placeholder={SEARCHBAR_PLACEHOLDER}
             value={search}
             onChangeText={(search) => searchFilterFunction(search)}
+            inputStyle={styles.inputTxt}
           />
         }
         stickyHeaderIndices={[0]}
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     padding: 0,
     borderBottomColor: "#001C2F",
     borderBottomWidth: 5,
-    height: 55,
+    height: 60,
     justifyContent: "center",
   },
   stop_name: {
@@ -92,6 +93,10 @@ const styles = StyleSheet.create({
   btn: {
     flex: 1,
     justifyContent: "center",
+  },
+  inputTxt: {
+    fontFamily: "Roboto",
+    fontSize: 20,
   },
 });
 export default AllStopsScreen;

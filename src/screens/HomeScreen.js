@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  StyleSheet,
-  ActivityIndicator,
-  RefreshControl,
-  Text,
-} from "react-native";
+import { StyleSheet, RefreshControl } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { WebView } from "react-native-webview";
+import { NoInternet } from "../components/NoInternet";
+import { ERROR_TITLE } from "../constants";
 
-const HomeScreen = ({ route, navigation }) => {
+const HomeScreen = ({ route }) => {
   const [stop_url, setStopUrl] = useState(
     "https://imhd.sk/ba/online-zastavkova-tabula?st="
   );
@@ -20,6 +17,7 @@ const HomeScreen = ({ route, navigation }) => {
       );
     }
   });
+  const [connectionError, setConnectionError] = useState(false);
 
   const handleScroll = (contentOffset) => {
     if (contentOffset.y == 0 && refreshEnabled == false)
@@ -45,22 +43,23 @@ const HomeScreen = ({ route, navigation }) => {
         />
       }
     >
+      {connectionError && <NoInternet />}
       <WebView
         useWebView2
         ref={(ref) => (webViewRef.current = ref)}
-        style={{
-          backgroundColor: "pink",
-          borderWidth: 5,
-          borderColor: "red",
-        }}
         source={{
           uri: stop_url,
         }}
-        startInLoadingState={true}
-        renderLoading={() => <ActivityIndicator size="large" />}
         onScroll={(syntheticEvent) => {
           const { contentOffset } = syntheticEvent.nativeEvent;
           handleScroll(contentOffset);
+        }}
+        onError={() => setConnectionError(true)}
+        onLoadEnd={(syntheticEvent) => {
+          const { nativeEvent } = syntheticEvent;
+          nativeEvent.title !== ERROR_TITLE &&
+            connectionError &&
+            setConnectionError(false);
         }}
       />
     </ScrollView>
