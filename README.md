@@ -9,3 +9,6 @@
 Mobile app that wraps an online bus stop website https://imhd.sk/ba/online-zastavkova-tabula with online arrivals of public transport in Bratislava.
 ### Extra features
 - Bus stop search
+### Download
+Android APK - [https://bit.ly/OnlineBusStop](https://bit.ly/OnlineBusStop) 
+
