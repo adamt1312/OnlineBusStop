@@ -3,34 +3,31 @@ import { StyleSheet, RefreshControl } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { WebView } from "react-native-webview";
 import { NoInternet } from "../components/NoInternet";
-import { ERROR_TITLE } from "../constants";
+import { ERROR_TITLE, WEB_URL } from "../constants";
 
-const HomeScreen = ({ route }) => {
-  const [stop_url, setStopUrl] = useState(
-    "https://imhd.sk/ba/online-zastavkova-tabula?st="
-  );
+const HomeScreen = ({ route, navigation }) => {
+  const [stop_url, setStopUrl] = useState(WEB_URL);
   const [refreshEnabled, setRefreshEnabled] = useState(true);
+  const [connectionError, setConnectionError] = useState(false);
   useEffect(() => {
     if (route.params !== undefined) {
-      setStopUrl(
-        "https://imhd.sk/ba/online-zastavkova-tabula?st=" + route.params.stop_id
-      );
+      setStopUrl(WEB_URL + route.params.stop_id);
     }
   });
-  const [connectionError, setConnectionError] = useState(false);
-
-  const handleScroll = (contentOffset) => {
+  const handleScrollAndRefresh = (contentOffset) => {
     if (contentOffset.y == 0 && refreshEnabled == false)
       setRefreshEnabled(true);
     else if (contentOffset.y > 0 && refreshEnabled == true)
       setRefreshEnabled(false);
   };
-
   const triggerReload = () => {
     webViewRef.current.reload();
   };
-
   const webViewRef = useRef();
+  let touchX;
+  const handleSwipeRight = (pageX) => {
+    if (touchX - pageX > 150) navigation.navigate("All Stops");
+  };
   return (
     <ScrollView
       contentContainerStyle={styles.container}
@@ -52,7 +49,7 @@ const HomeScreen = ({ route }) => {
         }}
         onScroll={(syntheticEvent) => {
           const { contentOffset } = syntheticEvent.nativeEvent;
-          handleScroll(contentOffset);
+          handleScrollAndRefresh(contentOffset);
         }}
         onError={() => setConnectionError(true)}
         onLoadEnd={(syntheticEvent) => {
@@ -61,6 +58,9 @@ const HomeScreen = ({ route }) => {
             connectionError &&
             setConnectionError(false);
         }}
+        geolocationEnabled
+        onTouchStart={(e) => (touchX = e.nativeEvent.pageX)}
+        onTouchEnd={(e) => handleSwipeRight(e.nativeEvent.pageX)}
       />
     </ScrollView>
   );

@@ -1,12 +1,21 @@
-import * as React from "react";
-import { View, StatusBar, Image } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, StatusBar, Image, Alert } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabNavigator from "./src/navigation/TabNavigator";
+import * as Location from "expo-location";
 
 const Stack = createNativeStackNavigator();
 
 function App() {
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        Alert("Permission to access location was denied");
+      }
+    })();
+  }, []);
   return (
     <>
       <View

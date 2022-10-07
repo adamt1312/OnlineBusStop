@@ -57,6 +57,7 @@ const AllStopsScreen = ({ navigation }) => {
         )}
         keyExtractor={(item) => item.id.toString()}
         initialNumToRender={15}
+        keyboardShouldPersistTaps={"always"}
         onEndReachedThreshold={0.5}
         ListHeaderComponent={
           <Searchbar
