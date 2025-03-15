@@ -1,33 +1,32 @@
 {
-  "expo": {
-    "name": "OnlineBusStop",
-    "slug": "OnlineBusStop",
-    "version": "1.0.2",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/icon2.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.adamt1312.OnlineBusStop"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "expo": {
+        "name": "OnlineBusStop",
+        "slug": "OnlineBusStop",
+        "version": "1.0.2",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "newArchEnabled": true,
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "supportsTablet": true
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/icon2.png",
+                "backgroundColor": "#FFFFFF"
+            },
+            "package": "com.adamt1312.OnlineBusStop"
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        }
     }
-  }
 }
